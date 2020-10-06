@@ -1,15 +1,9 @@
-def add_letters(a)
-  s = a.map { |c| c.ord - 'a'.ord + 1 }.reduce(0, :+) % 26
-  s = 26 if s.zero?
-  (s + 'a'.ord - 1).chr
+def time_saved(s_lim, s_avg, d)
+  x = ((d.to_f / s_lim - d.to_f / s_avg) * 60).round(1)
+  p x
 end
 
-p add_letters([]) == "z"
-p add_letters(["y", "a"]) == "z"
-puts add_letters(["a", "b"]) == "c"
-p add_letters(["y", "c"]) == "b"
-
-
-# puts "** here is result : #{res} **"
-
-"707".tr('1234567890', 'IZEHSGLB-O')
+p time_saved(80, 90, 40) == 3.3
+p time_saved(80, 90, 4000) == 333.3
+p time_saved(80, 100, 40 ) == 6.0
+p time_saved(80, 100, 10) == 1.5
