@@ -1,9 +1,13 @@
-def time_saved(s_lim, s_avg, d)
-  x = ((d.to_f / s_lim - d.to_f / s_avg) * 60).round(1)
-  p x
+def factorial(n)
+ (1..n).inject(:*) || 1
 end
 
-p time_saved(80, 90, 40) == 3.3
-p time_saved(80, 90, 4000) == 333.3
-p time_saved(80, 100, 40 ) == 6.0
-p time_saved(80, 100, 10) == 1.5
+def eval_factorial(arr)
+  arr.reduce(0) { |sum, v| sum + factorial(v.to_i) }
+end
+
+p eval_factorial(["2!", "3!"]) == 8
+
+p eval_factorial(["5!", "4!", "2!"]) == 146
+
+p eval_factorial(["0!", "1!"]) == 2
