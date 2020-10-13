@@ -1,13 +1,9 @@
-def to_snake_case(str)
-  str.chars.map { |c| /[[:upper:]]/.match(c) ? "_#{c.downcase}" : c }.join
+def sum_primes(arr)
+  require 'prime'
+  s = arr.reduce(0) { |sum, n| sum + (Prime.prime?(n) ? n : 0) }
+  s == 0 ? nil : s
 end
 
-def to_camel_case(str)
-  s = str.split('_').map(&:capitalize).join
-  "#{s[0].downcase}#{s[1..-1]}"
-end
-
-p to_camel_case("hello_edabit") == "helloEdabit"
-p to_snake_case("helloEdabit") == "hello_edabit"
-p to_camel_case("is_modal_open") == "isModalOpen"
-p to_snake_case("getColor") == "get_color"
+p sum_primes([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 17
+p sum_primes([2, 3, 4, 11, 20, 50, 71]) == 87
+p sum_primes([]) == nil
