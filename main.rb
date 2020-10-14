@@ -1,9 +1,37 @@
-def sum_primes(arr)
-  require 'prime'
-  s = arr.reduce(0) { |sum, n| sum + (Prime.prime?(n) ? n : 0) }
-  s == 0 ? nil : s
+require 'date'
+
+def longest_streak(arr)
+  max = 1
+  q = 1
+  (0...arr.size - 1).each do |i|
+    c = DateTime.strptime(arr[i][:date], '%Y-%m-%d')
+    n = DateTime.strptime(arr[i + 1][:date], '%Y-%m-%d')
+    if c + 1 == n
+      max = q if (q += 1) > max
+    else
+      q = 1
+    end
+  end
+  max
 end
 
-p sum_primes([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 17
-p sum_primes([2, 3, 4, 11, 20, 50, 71]) == 87
-p sum_primes([]) == nil
+p longest_streak([
+                     {
+                         date: "2019-09-18"
+                     },
+                     {
+                         date: "2019-09-19"
+                     },
+                     {
+                         date: "2019-09-20"
+                     },
+                     {
+                         date: "2019-09-26"
+                     },
+                     {
+                         date: "2019-09-27"
+                     },
+                     {
+                         date: "2019-09-30"
+                     }
+                 ]) == 3
