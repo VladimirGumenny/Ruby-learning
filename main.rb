@@ -1,9 +1,11 @@
-require 'date'
-
-def has_friday_13(month, year)
-  p
+def cons(arr)
+  arr.sort == (arr.min..arr.max).to_a
 end
 
-p has_friday_13(3, 2020) == true
-p has_friday_13(10, 2017) == true
-p has_friday_13(1, 1985) == false
+p cons([5, 1, 4, 3, 2]) == true
+# // Can be re-arranged to form [1, 2, 3, 4, 5]
+
+p cons([5, 1, 4, 3, 2, 8]) == false
+
+p cons([5, 6, 7, 8, 9, 9]) == false
+# // 9 appears twice
