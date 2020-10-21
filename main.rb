@@ -1,11 +1,14 @@
-def cons(arr)
-  arr.sort == (arr.min..arr.max).to_a
+def binary_conversion(str)
+  return '' if str.empty?
+  res = ''
+  idx = 0
+  loop do
+    res += str[idx..idx + 7].to_i(2).chr
+    idx += 8
+    return res if idx >= str.size
+  end
 end
 
-p cons([5, 1, 4, 3, 2]) == true
-# // Can be re-arranged to form [1, 2, 3, 4, 5]
-
-p cons([5, 1, 4, 3, 2, 8]) == false
-
-p cons([5, 6, 7, 8, 9, 9]) == false
-# // 9 appears twice
+p binary_conversion("011001010110010001100001011000100110100101110100") == "edabit"
+p binary_conversion("001100010011001000110011") == "123"
+p binary_conversion("010010000110010101101100011011000110111100111111") == "Hello?"
