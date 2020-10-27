@@ -1,12 +1,8 @@
-require 'time'
-
-def hours_passed(time1, time2)
-  diff = Time.parse(time2) - Time.parse(time1)
-  return 'no time passed' if diff == 0
-  "#{(diff / 3600).round} hours"
+def sum_fractions(arr)
+  arr.reduce(0) { |sum, r| sum + Rational(r[0], r[1]) }.round
 end
 
-p hours_passed("1:00 AM", "1:00 AM")
-p hours_passed("3:00 AM", "9:00 AM") == "6 hours"
-p hours_passed("2:00 PM", "4:00 PM") == "2 hours"
-p hours_passed("1:00 AM", "3:00 PM") == "14 hours"
+
+p sum_fractions([[18, 13], [4, 5]]) == 2
+p sum_fractions([[36, 4], [22, 60]]) == 9
+p sum_fractions([[11, 2], [3, 4], [5, 4], [21, 11], [12, 6]]) == 11
