@@ -1,8 +1,14 @@
-def sum_fractions(arr)
-  arr.reduce(0) { |sum, r| sum + Rational(r[0], r[1]) }.round
+def get_diagonals(arr)
+  d1 = []
+  d2 = []
+  arr.each_with_index do |a, row|
+    d1 << a[row]
+    d2 << a[a.size - 1 - row]
+  end
+  [d1, d2]
 end
 
 
-p sum_fractions([[18, 13], [4, 5]]) == 2
-p sum_fractions([[36, 4], [22, 60]]) == 9
-p sum_fractions([[11, 2], [3, 4], [5, 4], [21, 11], [12, 6]]) == 11
+p get_diagonals([ [1, 2], [3, 4] ]) == [ [1, 4], [2, 3] ]
+p get_diagonals([ ["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"] ]) == [ ["a", "e", "i"], ["c", "e", "g"] ]
+p get_diagonals([ [true] ]) == [ [true], [true] ]
