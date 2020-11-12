@@ -1,8 +1,16 @@
-def how_close_to_c(rapidity)
-  ("%3.2e" % (1 / Math.cosh(rapidity * 2))).gsub('-0', '-')
+def get_type(value)
+  h = {
+      "Integer" => "int",
+      "String" => "str",
+      "TrueClass" => "bool",
+      "FalseClass" => "bool",
+      "Array" => "array"
+  }
+  h[value.class.name]
 end
 
-
-p how_close_to_c(3.14) == "3.75e-3"
-p how_close_to_c(42) == "6.61e-37"
-p how_close_to_c(355) == "8.95e-309"
+p get_type(0) == "int"
+p get_type(1) == "int"
+p get_type("a") == "str"
+p get_type(true) == "bool"
+p get_type([]) == "array"
