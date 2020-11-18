@@ -1,30 +1,17 @@
-def same_length(s)
-  return true if s.size.zero?
-  return false if s[0] == '0'
-
-  idx = 0
-  loop do
-    ones = count_until_changed(s, idx)
-    zeros = count_until_changed(s, idx + ones)
-    return false unless ones == zeros
-    idx += ones + zeros
-    break if idx == s.size
-  end
-  true
+def balanced(arr)
+  l = arr.size
+  left = arr[0..l/2 - 1].inject(:+)
+  right = arr[l/2..l - 1].inject(:+)
+  return arr if left == right
+  left > right ? arr[0..l/2 - 1] * 2 : arr[l/2..l - 1] * 2
 end
 
-def count_until_changed(s, start)
-  return 0 if start >= s.size
-  cnt = 1
-  (start + 1...s.size).each do |i|
-    break unless s[start] == s[i]
-    cnt += 1
-  end
-  cnt
-end
+p balanced([88, 3, 27, 5, 9, 0, 13, 10]) == [88, 3, 27, 5, 88, 3, 27, 5]
+# 88 + 3 + 27 + 5 > 9 + 0 + 13 + 10  sol = [88, 3 ,27 ,5 ,88 ,3 ,27 ,5]
 
-p same_length('101') == false
-p same_length("110011100010") == true
-p same_length("101010110") == false
-p same_length("111100001100") == true
-p same_length("111") == false
+p balanced([7, 5, 2, 6, 1, 0, 1, 5, 2, 7, 0, 6]) == [7, 5, 2, 6, 1, 0, 1, 5, 2, 7, 0, 6]
+# 7 + 5 + 2 + 6 + 1 + 0 = 1 + 5 + 2 + 7 + 0 + 6 sol =  [7, 5, 2, 6, 1, 0, 1, 5, 2, 7, 0, 6]
+
+p balanced([1, 2, 4, 6, 3, 1]) == [6, 3, 1, 6, 3, 1]
+# 1 + 2 + 4 < 6 + 3 + 1 sol = [6, 3, 1, 6, 3, 1]
+#
