@@ -1,17 +1,14 @@
-def balanced(arr)
-  l = arr.size
-  left = arr[0..l/2 - 1].inject(:+)
-  right = arr[l/2..l - 1].inject(:+)
-  return arr if left == right
-  left > right ? arr[0..l/2 - 1] * 2 : arr[l/2..l - 1] * 2
+def fat_prime(a, b)
+  require 'prime'
+  a, b = b, a if a > b
+  (a..b).select { |n| Prime.prime?(n) }.max
 end
 
-p balanced([88, 3, 27, 5, 9, 0, 13, 10]) == [88, 3, 27, 5, 88, 3, 27, 5]
-# 88 + 3 + 27 + 5 > 9 + 0 + 13 + 10  sol = [88, 3 ,27 ,5 ,88 ,3 ,27 ,5]
+p fat_prime(10, 2) == 7
+# [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] and the largest prime is 7.
 
-p balanced([7, 5, 2, 6, 1, 0, 1, 5, 2, 7, 0, 6]) == [7, 5, 2, 6, 1, 0, 1, 5, 2, 7, 0, 6]
-# 7 + 5 + 2 + 6 + 1 + 0 = 1 + 5 + 2 + 7 + 0 + 6 sol =  [7, 5, 2, 6, 1, 0, 1, 5, 2, 7, 0, 6]
+p fat_prime(2, 10) == 7
+# range [2, 3, 4, 5, 6, 7, 8, 9, 10] and the largest prime is 7.
 
-p balanced([1, 2, 4, 6, 3, 1]) == [6, 3, 1, 6, 3, 1]
-# 1 + 2 + 4 < 6 + 3 + 1 sol = [6, 3, 1, 6, 3, 1]
-#
+p fat_prime(4, 24) == 23
+# range [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24] the largest prime is 23.
