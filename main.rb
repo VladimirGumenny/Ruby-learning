@@ -1,14 +1,8 @@
-def fat_prime(a, b)
-  require 'prime'
-  a, b = b, a if a > b
-  (a..b).select { |n| Prime.prime?(n) }.max
+def jay_and_bob(str)
+  map = {'half' => 14, 'quarter' => '7', 'eighth' => '3.5', 'sixteenth' => '1.75'}
+  "#{map[str]} grams"
 end
 
-p fat_prime(10, 2) == 7
-# [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] and the largest prime is 7.
-
-p fat_prime(2, 10) == 7
-# range [2, 3, 4, 5, 6, 7, 8, 9, 10] and the largest prime is 7.
-
-p fat_prime(4, 24) == 23
-# range [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24] the largest prime is 23.
+p jay_and_bob("half") == "14 grams"
+p jay_and_bob("quarter") == "7 grams"
+p jay_and_bob("eighth") == "3.5 grams"
