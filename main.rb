@@ -1,8 +1,7 @@
-def jay_and_bob(str)
-  map = {'half' => 14, 'quarter' => '7', 'eighth' => '3.5', 'sixteenth' => '1.75'}
-  "#{map[str]} grams"
+def harmonic(n)
+  (1..n).inject(0){ |sum, i| sum + 1.0 / i }.round(3)
 end
 
-p jay_and_bob("half") == "14 grams"
-p jay_and_bob("quarter") == "7 grams"
-p jay_and_bob("eighth") == "3.5 grams"
+p harmonic(3) #== 1.833
+p harmonic(1) == 1.0
+p harmonic(5) == 2.283
