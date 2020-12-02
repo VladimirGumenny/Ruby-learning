@@ -1,21 +1,10 @@
-def coloured_triangle(row)
-  return row if row.size == 1
-
-  (0...row.size - 1).each do
-    next_row = ''
-    row.chars.each_cons(2) do |pair|
-      if pair[0] == pair[1]
-        next_row += pair[0]
-      else
-        next_row += (%w[R G B] - pair)[0]
-      end
-    end
-    row = next_row
-  end
-  row[0]
+def find_factors(n)
+  (1..n).select { |i| n % i == 0}
 end
 
-p coloured_triangle('GB') == 'R'
-p coloured_triangle('RBRGBRBGGRRRBGBBBGG') == 'G'
-p coloured_triangle('B') == 'B'
-p coloured_triangle('RBRGBRB') == 'G'
+p find_factors(9) == [1, 3, 9]
+# 9 has three factors 1, 3 and 9
+p find_factors(12) == [1, 2, 3, 4, 6, 12]
+p find_factors(20) == [1, 2, 4, 5, 10, 20]
+p find_factors(0) == []
+# 0 has no factors
