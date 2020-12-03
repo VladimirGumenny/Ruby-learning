@@ -1,10 +1,10 @@
-def find_factors(n)
-  (1..n).select { |i| n % i == 0}
+def is_orthogonal(first, second)
+  # first.each_with_index.reduce(0) { |sum, (f, idx)| sum + f * second[idx] }.zero?
+  (0...first.size).reduce(0) { |sum, idx| sum + first[idx] * second[idx] }.zero?
 end
 
-p find_factors(9) == [1, 3, 9]
-# 9 has three factors 1, 3 and 9
-p find_factors(12) == [1, 2, 3, 4, 6, 12]
-p find_factors(20) == [1, 2, 4, 5, 10, 20]
-p find_factors(0) == []
-# 0 has no factors
+p is_orthogonal([1, 2], [2, -1]) == true
+
+p is_orthogonal([3, -1], [7, 5]) == false
+
+p is_orthogonal([1, 2, 0], [2, -1, 10]) == true
