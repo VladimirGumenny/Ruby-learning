@@ -1,23 +1,27 @@
-def dice_score(throws)
-  res = 0
-  h = Hash.new(0)
-  throws.each { |v| h[v] += 1 }
-  h.each do |num, qnt|
-    next if qnt < 3
-    res += num == 1 ? 1000 : num * 100
-    h[num] -= 3
-    h.delete(num) if h[num].zero?
+def space_message(str)
+  loop do
+    idx = 0
+    start = 0
+    str.chars.each do |c|
+      case c
+      when '['
+        inside = true
+        start = idx
+      when ']'
+        s = str[start..idx]
+        str.gsub!(s, (s.scan(/[[:alpha:]]/).join) * s[1...-1].to_i)
+        break
+      end
+      idx += 1
+    end
+    return str unless str.include? '['
   end
-  h.each do |num, qnt|
-    next unless [1, 5].include?(num)
-    res += (num == 1 ? 100 : 50) * qnt
-    h.delete(num)
-  end
-  res
 end
 
-
-p dice_score([1, 5, 1, 3, 4]) == 250
-p dice_score([2, 3, 4, 6, 2]) == 0
-p dice_score([4, 4, 4, 3, 3]) == 400
-p dice_score([2, 4, 4, 5, 4]) == 450
+p space_message("IF[2E]LG[5O]D") == "IFEELGOOOOOD"
+p space_message(space_message("AB[2C[2EF]G]")) == "ABCEFEFGCEFEFG"
+p space_message("AB[3CD]") == "ABCDCDCD"
+p space_message("ABCD") == "ABCD"
+# "AB" = "AB"
+# "[3CD]" = "CDCDCD"
+p space_message("IF[2E]LG[5O]D") == "IFEELGOOOOOD"
