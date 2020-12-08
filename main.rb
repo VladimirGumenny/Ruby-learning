@@ -1,27 +1,30 @@
-def space_message(str)
-  loop do
-    idx = 0
-    start = 0
-    str.chars.each do |c|
-      case c
-      when '['
-        inside = true
-        start = idx
-      when ']'
-        s = str[start..idx]
-        str.gsub!(s, (s.scan(/[[:alpha:]]/).join) * s[1...-1].to_i)
-        break
-      end
-      idx += 1
-    end
-    return str unless str.include? '['
+def microwave_buttons(time)
+  return 3 if time == '01:00'
+
+  min, sec = time.split(':').map(&:to_i)
+  cnt = 0
+  if min.positive?
+    cnt += min < 10 ? 1 : 2
+    cnt += 2 if sec.zero?
   end
+  b_30 = sec / 30
+  if b_30 == 1
+    cnt += 1
+    sec -= 30
+  end
+  cnt += sec < 10 ? 1 : 2 if sec.positive?
+  cnt + 1
 end
 
-p space_message("IF[2E]LG[5O]D") == "IFEELGOOOOOD"
-p space_message(space_message("AB[2C[2EF]G]")) == "ABCEFEFGCEFEFG"
-p space_message("AB[3CD]") == "ABCDCDCD"
-p space_message("ABCD") == "ABCD"
-# "AB" = "AB"
-# "[3CD]" = "CDCDCD"
-p space_message("IF[2E]LG[5O]D") == "IFEELGOOOOOD"
+p microwave_buttons('01:00') == 3
+
+p microwave_buttons('00:30') == 2
+# '+30' to put 30 seconds on the timer.
+# 'Start' button to start the oven.
+
+p microwave_buttons('00:70') == 3
+# '7' followed by '0' to put 70 seconds on the timer.
+# 'Start' button to start the oven.
+
+p microwave_buttons('00:00') == 1
+# 'Start' button to start the oven.
