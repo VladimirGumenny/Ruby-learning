@@ -1,30 +1,14 @@
-def microwave_buttons(time)
-  return 3 if time == '01:00'
-
-  min, sec = time.split(':').map(&:to_i)
-  cnt = 0
-  if min.positive?
-    cnt += min < 10 ? 1 : 2
-    cnt += 2 if sec.zero?
-  end
-  b_30 = sec / 30
-  if b_30 == 1
-    cnt += 1
-    sec -= 30
-  end
-  cnt += sec < 10 ? 1 : 2 if sec.positive?
-  cnt + 1
+def divisible_by_b(a, b)
+  ((a / b) + 1) * b
 end
 
-p microwave_buttons('01:00') == 3
+p divisible_by_b(98, 3) == 99
+p divisible_by_b(17, 8) == 24
+p divisible_by_b(14, 11) == 22
 
-p microwave_buttons('00:30') == 2
-# '+30' to put 30 seconds on the timer.
-# 'Start' button to start the oven.
+p1 = 'str'
+p2 = [p1]
 
-p microwave_buttons('00:70') == 3
-# '7' followed by '0' to put 70 seconds on the timer.
-# 'Start' button to start the oven.
-
-p microwave_buttons('00:00') == 1
-# 'Start' button to start the oven.
+x1 = Array(p1)
+x2 = Array(p2)
+p
