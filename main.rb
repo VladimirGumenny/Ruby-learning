@@ -1,22 +1,23 @@
-def replace_nth(str, nth, old_char, new_char)
-  return str if nth <= 0
-
-  counter = 0
-  (0...str.size).each do |i|
-    if str[i] == old_char
-      counter += 1
-      if counter == nth
-        str[i] = new_char
-        counter = 0
-      end
-    end
+def calculate_score(games)
+  abigail = 0
+  benson = 0
+  wins = [['P', 'R'], ['R', 'S'], ['S', 'P']]
+  games.each do |game|
+    next if game[0] == game[1]
+    wins.include?(game) ? abigail += 1 : benson += 1
   end
-
-  str
+  %w(Tie Abigail Benson)[abigail <=> benson]
 end
 
-p replace_nth("A glittering gem is not enough.", 0, "o", "-") == "A glittering gem is not enough."
+p calculate_score([['S', 'S'], ['S', 'P'], ['R', 'S'], ['S', 'R'], ['R', 'R']]) == "Abigail"
 
-p replace_nth("Vader said: No, I am your father!", 2, "a", "o") == "Vader soid: No, I am your fother!"
+p calculate_score([["R", "R"], ["S", "S"]]) == "Tie"
 
-p replace_nth("Writing a list of random sentences is harder than I initially thought it would be.", 2, "i", "3")  == "Writ3ng a list of random sentences 3s harder than I in3tially thought 3t would be."
+p calculate_score([["R", "P"], ["R", "S"], ["S", "P"]]) == "Abigail"
+
+# Benson wins the first game (Paper beats Rock).
+# Abigail wins the second game (Rock beats Scissors).
+# Abigail wins the third game (Scissors beats Paper).
+# Abigail wins 2/3.
+
+p calculate_score([["S", "R"], ["R", "S"], ["R", "R"]]) == "Tie"
