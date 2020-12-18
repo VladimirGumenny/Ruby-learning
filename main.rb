@@ -1,16 +1,7 @@
-def get_container(product)
-  inventory = {
-    'Bread': "bag",
-    'Beer': "bottle",
-    'Milk': "bottle",
-    'Cerials': "box",
-    'Eggs': "carton",
-    'Candy': "plastic",
-  }
-  inventory[product.to_sym]
+def fifth(*args)
+  return 'Not enough arguments' if args.size < 5
+  args[4].class
 end
 
-p get_container("Bread") == "bag"
-p get_container("Beer") == "bottle"
-p get_container("Candy") == "plastic"
-p get_container("Cheese") == nil
+p fifth("a", 2, 3, [1, 2, 3], "five") == String
+p fifth() == "Not enough arguments"
