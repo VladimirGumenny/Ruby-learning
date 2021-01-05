@@ -1,7 +1,15 @@
-def fifth(*args)
-  return 'Not enough arguments' if args.size < 5
-  args[4].class
+def legendre(p, n)
+  res = 0
+  i = 1
+  loop do
+    d = p ** i
+    return res if d > n
+
+    i += 1
+    res += n / d
+  end
 end
 
-p fifth("a", 2, 3, [1, 2, 3], "five") == String
-p fifth() == "Not enough arguments"
+p legendre(5, 100) == 24
+p legendre(2, 128) == 127
+p legendre(3, 50) == 22
