@@ -1,5 +1,13 @@
-def parallel_resistance(arr)
-  (1.0 / (arr.map{ |r| 1.0/r }.inject(:+))).round(1)
+def club_entry(word)
+  word.chars.each_cons(2) do |couple|
+    next unless couple.first == couple.last
+    return (couple.first.ord - 'a'.ord + 1) *  4
+  end
 end
 
-p parallel_resistance([6, 3, 6]) == 1.5
+p club_entry("lettuce") == 80
+p club_entry("hill") == 48
+# 'l' is 12th alphabet
+# 12*4 = 48
+p club_entry("apple") == 64
+p club_entry("bee") == 20
