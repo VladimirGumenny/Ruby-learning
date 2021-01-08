@@ -1,13 +1,19 @@
-def club_entry(word)
-  word.chars.each_cons(2) do |couple|
-    next unless couple.first == couple.last
-    return (couple.first.ord - 'a'.ord + 1) *  4
+def little_big(num)
+  i = 1
+  odd = 5
+  even = 100
+  loop do
+    if i.odd?
+      return odd if i == num
+      odd += 1
+    else
+      return even if i == num
+      even *= 2
+    end
+    i += 1
   end
 end
 
-p club_entry("lettuce") == 80
-p club_entry("hill") == 48
-# 'l' is 12th alphabet
-# 12*4 = 48
-p club_entry("apple") == 64
-p club_entry("bee") == 20
+p little_big(4) == 200
+p little_big(5) == 7
+p little_big(28) == 819200
