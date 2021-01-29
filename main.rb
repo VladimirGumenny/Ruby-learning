@@ -1,12 +1,31 @@
-def fruit_salad(arr)
-  arr.flat_map do |fruit|
-    mid = fruit.size / 2 - 1
-    [fruit[0..mid], fruit[mid + 1..-1]]
-  end.sort.join
+def no_intersecting_ones(arr)
+  arr.all? { |row| row.count(1) != 2 } && arr.transpose.all? { |row| row.count(1) != 2 }
 end
 
-p fruit_salad(['apple', 'pear', 'grapes']) == 'apargrapepesple'
+p no_intersecting_ones([
+                         [0, 0, 0, 1],
+                         [1, 0, 0, 0],
+                         [0, 0, 0, 1]
+                       ]) == false
 
-p fruit_salad(['raspberries', 'mango']) == 'erriesmangoraspb'
+p no_intersecting_ones([
+                       [0, 0, 1, 1],
+                       [0, 0, 0, 0],
+                       [0, 0, 0, 0]
+                     ]) == false
 
-p fruit_salad(['banana']) == 'anaban'
+p no_intersecting_ones([
+                        [0, 1],
+                        [1, 0]
+                      ]) == true
+
+p no_intersecting_ones([
+                       [1, 1],
+                       [0, 0]
+                     ]) == false
+
+p no_intersecting_ones([
+                       [0, 0, 0, 1],
+                       [1, 0, 0, 0],
+                       [0, 1, 0, 0]
+                     ]) == true
