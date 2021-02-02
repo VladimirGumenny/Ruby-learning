@@ -1,31 +1,26 @@
-def no_intersecting_ones(arr)
-  arr.all? { |row| row.count(1) != 2 } && arr.transpose.all? { |row| row.count(1) != 2 }
+def track_robot(steps)
+  x, y = 0, 0
+  direction = 'east'
+  directions = %w[east south west north]
+  deltas = {
+    'east' => [1, 0],
+    'south' => [0, -1],
+    'west' => [-1, 0],
+    'north' => [0, 1]
+  }
+  steps.chars do |step|
+    case step
+    when '.'
+      dx, dy = deltas[direction]
+      x += dx
+      y += dy
+    when '<'
+      direction = directions[(directions.index(direction) - 1) % 4]
+    when '>'
+      direction = directions[(directions.index(direction) + 1) % 4]
+    end
+  end
+  [x, y]
 end
 
-p no_intersecting_ones([
-                         [0, 0, 0, 1],
-                         [1, 0, 0, 0],
-                         [0, 0, 0, 1]
-                       ]) == false
-
-p no_intersecting_ones([
-                       [0, 0, 1, 1],
-                       [0, 0, 0, 0],
-                       [0, 0, 0, 0]
-                     ]) == false
-
-p no_intersecting_ones([
-                        [0, 1],
-                        [1, 0]
-                      ]) == true
-
-p no_intersecting_ones([
-                       [1, 1],
-                       [0, 0]
-                     ]) == false
-
-p no_intersecting_ones([
-                       [0, 0, 0, 1],
-                       [1, 0, 0, 0],
-                       [0, 1, 0, 0]
-                     ]) == true
+p track_robot("..<.<.") == [1, 1]
