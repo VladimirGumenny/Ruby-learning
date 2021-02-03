@@ -1,26 +1,14 @@
-def track_robot(steps)
-  x, y = 0, 0
-  direction = 'east'
-  directions = %w[east south west north]
-  deltas = {
-    'east' => [1, 0],
-    'south' => [0, -1],
-    'west' => [-1, 0],
-    'north' => [0, 1]
-  }
-  steps.chars do |step|
-    case step
-    when '.'
-      dx, dy = deltas[direction]
-      x += dx
-      y += dy
-    when '<'
-      direction = directions[(directions.index(direction) - 1) % 4]
-    when '>'
-      direction = directions[(directions.index(direction) + 1) % 4]
-    end
+def wave(str)
+  res = []
+  (0...str.size).each do |idx|
+    next if str[idx] == ' '
+    s = str.dup
+    s[idx] = s[idx].upcase
+    res << s
   end
-  [x, y]
+  res
 end
 
-p track_robot("..<.<.") == [1, 1]
+p wave("edabit") == ["Edabit", "eDabit", "edAbit", "edaBit", "edabIt", "edabiT"]
+p wave("just do it") == ["Just do it", "jUst do it", "juSt do it", "jusT do it", "just Do it", "just dO it", "just do It", "just do iT"]
+p wave(" ") == []
