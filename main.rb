@@ -1,12 +1,20 @@
-def best_friend(str, a, b)
-  str.chars.each_with_index do |char, idx|
-    next unless char == a
-    return false unless str[idx + 1] && str[idx + 1] == b
+def leaderboards(users)
+  users.map do |user|
+    user[:true_score] = user[:reputation] * 2 + user[:score]
+    user
   end
-  true
+  users.sort_by! { |user| -user[:true_score] }.each do |user|
+    user.delete(:true_score)
+  end
+  users
 end
 
-p best_friend('go to edabit  and meditate','e', 'd') == false
-p best_friend('he headed to the store', 'h', 'e') == true
-p best_friend('i found an ounce with my hound', 'o', 'u') == true
-p best_friend('we found your dynamite', 'd', 'y') == false
+p leaderboards([
+                 { name: "a", score: 100, reputation: 20 },
+                 { name: "b", score: 90, reputation: 40 },
+                 { name: "c", score: 115, reputation: 30 },
+               ]) == [
+  { name: "c", score: 115, reputation: 30 }, # trueScore = 175
+  { name: "b", score: 90, reputation: 40 }, # trueScore = 170
+  { name: "a", score: 100, reputation: 20 } # trueScore = 140
+]
