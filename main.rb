@@ -1,20 +1,8 @@
-def leaderboards(users)
-  users.map do |user|
-    user[:true_score] = user[:reputation] * 2 + user[:score]
-    user
-  end
-  users.sort_by! { |user| -user[:true_score] }.each do |user|
-    user.delete(:true_score)
-  end
-  users
+def missing_letter(arr)
+  (arr[0].upto(arr[-1]).to_a - arr).first
 end
 
-p leaderboards([
-                 { name: "a", score: 100, reputation: 20 },
-                 { name: "b", score: 90, reputation: 40 },
-                 { name: "c", score: 115, reputation: 30 },
-               ]) == [
-  { name: "c", score: 115, reputation: 30 }, # trueScore = 175
-  { name: "b", score: 90, reputation: 40 }, # trueScore = 170
-  { name: "a", score: 100, reputation: 20 } # trueScore = 140
-]
+p missing_letter(["a", "b", "c", "e", "f", "g"]) == "d"
+p missing_letter(["O", "Q", "R", "S"]) == "P"
+p missing_letter(["t", "u", "v", "w", "x", "z"]) == "y"
+p missing_letter(["m", "o"]) == "n"
