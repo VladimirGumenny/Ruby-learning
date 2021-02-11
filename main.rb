@@ -1,11 +1,8 @@
-def factorial(n)
-  (1..n).inject(:*) || 1
+def first_n_vowels(s, n)
+  vowels = s.scan(/[aeiouAEIUO]/)
+  vowels.size < n ? 'invalid' : vowels[0...n].join
 end
 
-def grid_pos(arr)
-  factorial(arr[0] + arr[1]) / factorial(arr[0]) / factorial(arr[1])
-end
-
-p grid_pos([1, 1]) == 2
-p grid_pos([6, 4]) == 210
-p grid_pos([5, 5]) == 252
+p first_n_vowels("sharpening skills", 3) == "aei"
+p first_n_vowels("major league", 5) == "aoeau"
+p first_n_vowels("hostess", 5) == "invalid"
