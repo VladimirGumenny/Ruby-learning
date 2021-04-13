@@ -1,13 +1,28 @@
-def happy_year(year)
-  loop do
-    year += 1
-    return year if year.to_s.chars.uniq.size == 4
-  end
+def reverse(str)
+  letters = str.tr('0-9', '')
+  str.tr(letters, letters.reverse)
 end
 
-p happy_year(2017) == 2018
-# // 2018 has all distinct digits
+p reverse("ab89c") == "cb89a"
+p reverse("jkl5mn923o") == "onm5lk923j"
+p reverse("123a45") == "123a45"
 
-p happy_year(1990) == 2013
 
-p happy_year(2021) == 2031
+
+=begin
+current_type_idx = 0
+while  and total_boxes < truck_size
+boxes, units = box_types_sorted[current_type_idx]
+if truck_size >= total_boxes + boxes
+  total_boxes += boxes
+  total_units += units * boxes
+else
+  total_units += units * (truck_size - total_boxes)
+  total_boxes += truck_size - total_boxes
+end
+puts "idx: #{current_type_idx}"
+puts "total_boxes: #{total_boxes}"
+puts "total_units: #{total_units}"
+current_type_idx += 1
+end
+=end
