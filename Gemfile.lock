@@ -1,0 +1,27 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    debase (2.3.2)
+      debase-ruby_core_source (~> 0.10.11)
+    debase-ruby_core_source (0.10.12)
+    diff-lcs (1.4.4)
+    power_assert (2.0.0)
+    rspec-expectations (3.10.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-support (3.10.2)
+    ruby-debug-ide (2.3.1)
+      debase (~> 2.3.2)
+    test-unit (3.3.6)
+      power_assert
+
+PLATFORMS
+  x86_64-darwin-20
+
+DEPENDENCIES
+  rspec-expectations
+  ruby-debug-ide
+  test-unit
+
+BUNDLED WITH
+   2.2.8
